@@ -11,6 +11,10 @@ public class Cliente {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.telefone = telefone;
+		Conexao con = new Conexao();
+		Statement st = con.conexao.createStatement();
+		st.executeUpdate("INSERT INTO Cliente(nome, cpf, telefone) VALUES (" + this.getNome() + "," + this.getCpf() + "," + this.getTelefone() + ")");
+
 	}
 
 	public void Status(Cliente a) {
