@@ -1,6 +1,7 @@
 
-public class Cliente {
 
+public class Cliente {
+	
 	private String nome;
 	private int cpf;
 	private int telefone;
@@ -11,6 +12,7 @@ public class Cliente {
 		this.cpf = cpf;
 		this.telefone = telefone;
 	}
+
 	public void Status(Cliente a) {
 		
 		System.out.println("Nome: " + a.getNome() +" Cpf: "+ a.getCpf() + " Telefone: " + a.getTelefone());
