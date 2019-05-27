@@ -1,4 +1,5 @@
-
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Cliente {
 	
@@ -6,15 +7,19 @@ public class Cliente {
 	private int cpf;
 	private int telefone;
 	
-	public Cliente(String nome, int cpf, int telefone) {
+	public Cliente(String nome, int cpf, int telefone) throws SQLException {
 		
 		this.nome = nome;
 		this.cpf = cpf;
 		this.telefone = telefone;
+		Conexao con = new Conexao();
+		String query = "INSERT INTO Cliente(nome, cpf, telefone) VALUES ('" + this.getNome() + "','" + this.getCpf() + "','" + this.getTelefone() + "')";
+		Statement st = con.conexao.createStatement();
+		st.executeUpdate(query);
+ 
 	}
 
 	public void Status(Cliente a) {
-		
 		System.out.println("Nome: " + a.getNome() +" Cpf: "+ a.getCpf() + " Telefone: " + a.getTelefone());
 	}
 	public String getNome() {
