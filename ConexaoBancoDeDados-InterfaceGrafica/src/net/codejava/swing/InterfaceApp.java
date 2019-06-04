@@ -10,17 +10,31 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
 import javax.swing.JDesktopPane;
 
+
 public class InterfaceApp extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField input;
-
+	
+	public static void listar_cliente() throws Exception{
+		Statement st;
+		Conexao con = new Conexao();
+		st = con.conexao.createStatement();
+		ResultSet rs = st.executeQuery("SELECT cpf, nome, telefone FROM Cliente");
+		System.out.println("----------------------------------------");
+		while (rs.next()) {
+			System.out.println("CPF:" +rs.getString(1) + "\tNome: "+ rs.getString(2)+ "\tTelefone: " + rs.getString(3) );
+			}
+		}
 	/**
 	 * Launch the application.
 	 */
@@ -43,7 +57,7 @@ public class InterfaceApp extends JFrame {
 	public InterfaceApp() {
 		setTitle("Informa\u00E7\u00F5es de clientes");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 532, 124);
+		setBounds(100, 100, 711, 124);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -61,7 +75,34 @@ public class InterfaceApp extends JFrame {
 		btnEnviar.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnEnviar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println(input.getText());//Teste
+				//System.out.println(input.getText());//Teste
+				String check = input.getText();
+				 switch (check)
+		            {
+		            case "1" :
+		             // InterfaceCadastro(); // Mudar de interface e seguir com cadastro de cliente
+		            	
+		            case "2" :
+		            	try {
+		            		listar_cliente();
+		            	} catch (Exception e) {
+						
+		            		e.printStackTrace();
+					}
+		                break;
+		            case "3" :
+		                System.exit(0);
+		               break;
+		                
+		            default:
+		            	//menu();
+		            	break;
+		            }
+		            if(check == "-1") {
+		            	//menu();
+		            }
+		            
+		           
 			}
 		});
 		contentPane.add(btnEnviar, BorderLayout.SOUTH);

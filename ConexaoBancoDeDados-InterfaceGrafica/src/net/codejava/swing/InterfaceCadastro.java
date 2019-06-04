@@ -16,7 +16,7 @@ import java.awt.Font;
 public class InterfaceCadastro extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField input;
 	private final JButton btnNewButton = new JButton("Enviar");
 
 	/**
@@ -39,6 +39,7 @@ public class InterfaceCadastro extends JFrame {
 	 * Create the frame.
 	 */
 	public InterfaceCadastro() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 475, 127);
 		contentPane = new JPanel();
@@ -50,14 +51,15 @@ public class InterfaceCadastro extends JFrame {
 		lblDeONome.setFont(new Font("Verdana", Font.PLAIN, 17));
 		contentPane.add(lblDeONome, BorderLayout.NORTH);
 		
-		textField = new JTextField();
-		contentPane.add(textField, BorderLayout.CENTER);
-		textField.setColumns(10);
+		input = new JTextField();
+		contentPane.add(input, BorderLayout.CENTER);
+		input.setColumns(10);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
 		contentPane.add(btnNewButton, BorderLayout.SOUTH);
-	}
+			}
+		}
 
-}
+
