@@ -8,6 +8,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -95,6 +97,7 @@ public class InterfaceCadastro extends JFrame {
                 try {
                     Construtor(txtNome , txtCPF , txtTEL);
                     dispose();
+                    JOptionPane.showMessageDialog(null,"Cadastro realizado com sucesso!");
                     System.exit(0);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
