@@ -1,8 +1,8 @@
 package net.codejava.swing;
 
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -18,12 +18,26 @@ import java.awt.Font;
 import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
 import javax.swing.JDesktopPane;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JRadioButton;
+import javax.swing.JToggleButton;
+import javax.swing.JTextPane;
+import javax.swing.JSpinner;
+import javax.swing.JList;
+import javax.swing.JPasswordField;
+import javax.swing.JTree;
+import javax.swing.JProgressBar;
+import javax.swing.JSeparator;
+import javax.swing.JSlider;
+import javax.swing.JTextArea;
+import javax.swing.JTable;
 
 
 public class InterfaceApp extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField input;
 	
 	public static void listar_cliente() throws Exception{
 		Statement st;
@@ -57,55 +71,69 @@ public class InterfaceApp extends JFrame {
 	public InterfaceApp() {
 		setTitle("Informa\u00E7\u00F5es de clientes");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 711, 124);
+		setBounds(100, 100, 355, 455);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		JLabel lblpleaseEnterncadastrar = new JLabel("\"Please enter 1-3\\n1.Cadastrar cliente\\n2.Ver clientes\\n3.Sair\"");
-		lblpleaseEnterncadastrar.setFont(new Font("Verdana", Font.PLAIN, 17));
-		contentPane.add(lblpleaseEnterncadastrar, BorderLayout.NORTH);
+		JLabel lblSelecioneUmaOpo = new JLabel("Selecione uma op\u00E7\u00E3o abaixo");
+		lblSelecioneUmaOpo.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 27));
 		
-		input = new JTextField();
-		contentPane.add(input, BorderLayout.CENTER);
-		input.setColumns(10);
-		
-		JButton btnEnviar = new JButton("Enviar");//Botao Enviar
-		btnEnviar.setFont(new Font("Verdana", Font.PLAIN, 13));
-		btnEnviar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				//System.out.println(input.getText());//Teste
-				String check = input.getText();
-				 switch (check)
-		            {
-		            case "1" :
-		             // Descobrir uma forma de mudar de interface e seguir com cadastro
-		            	
-		            case "2" :
-		            	try {
-		            		listar_cliente();
-		            	} catch (Exception e) {
-						
-		            		e.printStackTrace();
-					}
-		                break;
-		            case "3" :
-		                System.exit(0);
-		               break;
-		                
-		            default:
-		            	//menu(); Não entrendo o uso do menu no código do trabalho 1
-		            	break;
-		            }
-		            if(check == "-1") {
-		            	//menu(); Não entrendo o uso do menu no código do trabalho 1
-		            }
-		            
-		           
+		JButton btnCadastrarCliente = new JButton("Cadastrar Cliente");
+		btnCadastrarCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
-		contentPane.add(btnEnviar, BorderLayout.SOUTH);
+		
+		JButton btnListarClientes = new JButton("Listar Clientes");
+		btnListarClientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		
+		JButton btnsair = new JButton("Sair");
+		
+		JList list = new JList();
+		
+		JList list_1 = new JList();
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(82)
+					.addComponent(list_1)
+					.addGap(83)
+					.addComponent(list, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(255, Short.MAX_VALUE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(lblSelecioneUmaOpo)
+					.addContainerGap(24, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addComponent(btnCadastrarCliente, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+						.addComponent(btnListarClientes, GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+						.addComponent(btnsair, GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE))
+					.addGap(27))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(35)
+					.addComponent(lblSelecioneUmaOpo)
+					.addGap(70)
+					.addComponent(btnCadastrarCliente)
+					.addGap(18)
+					.addComponent(btnListarClientes)
+					.addGap(18)
+					.addComponent(btnsair)
+					.addGap(56)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(list_1)
+						.addComponent(list, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(88, Short.MAX_VALUE))
+		);
+		contentPane.setLayout(gl_contentPane);
 	}
-
 }
