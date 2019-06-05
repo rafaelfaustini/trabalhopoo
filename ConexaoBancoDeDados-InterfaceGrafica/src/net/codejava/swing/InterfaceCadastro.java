@@ -1,5 +1,4 @@
 package net.codejava.swing;
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -10,6 +9,9 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
@@ -24,7 +26,9 @@ public class InterfaceCadastro extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-
+	private String nome;//Campo adicionado manualmente
+	private int cpf;//Campo adicionado manualmente
+	private int telefone;//Campo adicionado manualmente
 	/**
 	 * Launch the application.
 	 */
@@ -43,8 +47,20 @@ public class InterfaceCadastro extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public InterfaceCadastro() {
+	public void Construtor(String nome, int cpf, int telefone) throws SQLException {
+		this.nome = nome;
+		this.cpf = cpf;
+		this.telefone = telefone;
+		Conexao con = new Conexao();
+		String query = "INSERT INTO Cliente(nome, cpf, telefone) VALUES ('" + this.getNome() + "','" + this.getCpf() + "','" + this.getTelefone() + "')";
+		Statement st = con.conexao.createStatement();
+		st.executeUpdate(query);
+		}
+		
+	public InterfaceCadastro() {	
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -123,5 +139,26 @@ public class InterfaceCadastro extends JFrame {
 					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
+		
+		
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public int getCpf() {
+		return cpf;
+	}
+	public void setCpf(int cpf) {
+		this.cpf = cpf;
+	}
+	public int getTelefone() {
+		return telefone;
+	}
+	public void setTelefone(int telefone) {
+		this.telefone = telefone;
 	}
 }
